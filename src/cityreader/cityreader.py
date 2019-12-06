@@ -85,8 +85,8 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
         if row[0] is not "city":
           if row[3] < str(lat1) and row[3] > str(lat2) or row[3] > str(lat1) and row[3] < str(lat2):
             if row[4] < str(lon1) and row[4] > str(lon2) or row[4] > str(lon1) and row[4] < str(lon2):
-              # print(f"{row[0]}: {float(row[3]), float(row[4])}"
-              within.append(f"{row[0]}: {float(row[3]), float(row[4])}")
+              print(f"{row[0]}: {float(row[3]), float(row[4])}")
+              within.append(f"{row[0]} :{float(row[3]), float(row[4])}")
   return within
 
 print("Stretch Goal Ex Lat Range: 32-45, Lon Range: -100 to -120:")
