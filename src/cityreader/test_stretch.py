@@ -81,7 +81,8 @@ class CityreaderTests(unittest.TestCase):
     ]
 
     inp = cityreader_stretch(40, -50, 12, -120, self.cities)
-
+    print(len(inp))
+    print(len(expected))
     for i in range(len(inp)):
       self.assertTrue(check_city(inp[i], expected[i]))
 

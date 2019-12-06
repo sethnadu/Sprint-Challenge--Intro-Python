@@ -1,6 +1,11 @@
 # Create a class to hold a city location. Call the class "City". It should have
 # fields for name, lat and lon (representing latitude and longitude).
 
+class City():
+  def __init__(self, name, lat, lon):
+    self.name = name
+    self.lat = lat
+    self.lon = lon
 
 # We have a collection of US cities with population over 750,000 stored in the
 # file "cities.csv". (CSV stands for "comma-separated values".)
@@ -14,21 +19,31 @@
 #
 # Note that the first line of the CSV is header that describes the fields--this
 # should not be loaded into a City object.
+
+import csv
+
 cities = []
 
 def cityreader(cities=[]):
   # TODO Implement the functionality to read from the 'cities.csv' file
   # For each city record, create a new City instance and add it to the 
   # `cities` list
-    
+    with open('src/cityreader/cities.csv') as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+          if row[0] == "city":
+            pass
+          else: 
+            cities.append(City(row[0], float(row[3]), float(row[4])))
     return cities
 
 cityreader(cities)
 
 # Print the list of cities (name, lat, lon), 1 record per line.
 for c in cities:
-    print(c)
+    print(f"Name: {c.name}, Lat: {c.lat}, Lon: {c.lon} \n")
 
+print(len(cities))
 # STRETCH GOAL!
 #
 # Allow the user to input two points, each specified by latitude and longitude.
@@ -64,8 +79,22 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   # within will hold the cities that fall within the specified region
   within = []
 
-  # TODO Ensure that the lat and lon valuse are all floats
+  with open('src/cityreader/cities.csv') as csvfile:
+      reader = csv.reader(csvfile)
+      for row in reader:
+        if row[0] is not "city":
+          if row[3] < str(lat1) and row[3] > str(lat2) or row[3] > str(lat1) and row[3] < str(lat2):
+            if row[4] < str(lon1) and row[4] > str(lon2) or row[4] > str(lon1) and row[4] < str(lon2):
+              print(f"{row[0]}: {float(row[3]), float(row[4])}")
+              within.append(f"{row[0]} :{float(row[3]), float(row[4])}")
+  return within
+
+print("Stretch Goal Ex Lat Range: 32-45, Lon Range: -100 to -120:")
+cityreader_stretch(45, -100, 32, -120)
+print('')
+print("Example Two Lat Range: 40-45, Lon Range: -70 to -90:")
+cityreader_stretch(40, -90, 45, -70)
+# TODO Ensure that the lat and lon valuse are all floats
   # Go through each city and check to see if it falls within 
   # the specified coordinates.
-
-  return within
+  
