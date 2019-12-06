@@ -34,7 +34,7 @@ def cityreader(cities=[]):
           if row[0] == "city":
             pass
           else: 
-            cities.append(City(row[0], row[3], row[4]))
+            cities.append(City(row[0], float(row[3]), float(row[4])))
     return cities
 
 cityreader(cities)
@@ -43,6 +43,7 @@ cityreader(cities)
 for c in cities:
     print(f"Name: {c.name}, Lat: {c.lat}, Lon: {c.lon} \n")
 
+print(len(cities))
 # STRETCH GOAL!
 #
 # Allow the user to input two points, each specified by latitude and longitude.
@@ -84,14 +85,14 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
         if row[0] is not "city":
           if row[3] < str(lat1) and row[3] > str(lat2) or row[3] > str(lat1) and row[3] < str(lat2):
             if row[4] < str(lon1) and row[4] > str(lon2) or row[4] > str(lon1) and row[4] < str(lon2):
-
-              print(f"{row[0]}: {float(row[3]), float(row[4])}")
+              # print(f"{row[0]}: {float(row[3]), float(row[4])}"
+              within.append(f"{row[0]}: {float(row[3]), float(row[4])}")
   return within
 
 print("Stretch Goal Ex Lat Range: 32-45, Lon Range: -100 to -120:")
 cityreader_stretch(45, -100, 32, -120)
 print('')
-print("Example Two Lat Range: 40-45, Lon Range: -70 to -90::")
+print("Example Two Lat Range: 40-45, Lon Range: -70 to -90:")
 cityreader_stretch(40, -90, 45, -70)
 # TODO Ensure that the lat and lon valuse are all floats
   # Go through each city and check to see if it falls within 
