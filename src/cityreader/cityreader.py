@@ -96,3 +96,4 @@ cityreader_stretch(40, -90, 45, -70)
 # TODO Ensure that the lat and lon valuse are all floats
   # Go through each city and check to see if it falls within 
   # the specified coordinates.
+  
